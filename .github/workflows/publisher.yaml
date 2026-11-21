@@ -24,9 +24,12 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
       version: ${{ steps.version.outputs.version }}
+      owner: ${{ steps.owner.outputs.owner }}
     steps:
       - uses: actions/checkout@v7.0.1
-
+      - name: Lowercase owner
+        id: owner
+        run: echo "owner=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
       - name: Get version
         id: version
         run: |
