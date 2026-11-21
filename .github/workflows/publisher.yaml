@@ -65,7 +65,7 @@ jobs:
         uses: home-assistant/builder/actions/build-image@2026.03.2
         with:
           arch: ${{ matrix.arch }}
-          image: ghcr.io/${{ github.repository_owner }}/${{ matrix.arch }}-${{ env.ADDON_NAME }}
+          image: ghcr.io/${{ needs.init.outputs.owner }}/${{ matrix.arch }}-${{ env.ADDON_NAME }}
           version: ${{ needs.init.outputs.version }}
           image-tags: |
             ${{ needs.init.outputs.version }}
@@ -93,4 +93,4 @@ jobs:
             latest
           container-registry-username: ${{ github.repository_owner }}
           container-registry-password: ${{ secrets.GITHUB_TOKEN }}
-          registry-prefix: ghcr.io/${{ github.repository_owner }}
+          registry-prefix: ghcr.io/${{ needs.init.outputs.owner }}
